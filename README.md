@@ -2,7 +2,7 @@
 日程日历
 
 ```javascript
-new Calendar({
+     new Calendar({
          el:"#app",    //嵌入的父元素 
          onSelected:function(year,month,day){         //选择日期时响应
              console.log("selected:",year,month,day);
