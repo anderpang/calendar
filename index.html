@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/calendar.css" />
+</head>
+<body>
+  <div id="app"></div>
+  <script src="src/js/calendar.js"></script>  
+  <script>
+  "use strict";
+  (function(){
+      var activityData=[20180910,20181020];   //有活动的日期
+     new Calendar({
+         el:"#app",                           
+         onSelected:function(year,month,day){        
+             console.log("selected:",year,month,day);
+         },
+         onCellRender:function(cell,year,month,day){   //选择日期时响应
+             if(year){
+                 var date=year*10000+month*100+day;
+                 if(activityData.indexOf(date)!==-1){
+                     var span=document.createElement("span");
+                     span.className="cld-dot";
+                     cell.appendChild(span);
+                 }
+             }
+         }
+         //,today:20000101     //可设定今天，支持整型及Date对象
+         //,selected:20180906  //可设定选中日期，支持整型及Date对象
+         ,limits:[20180810,20190215]   //有效日期范围，有效值[10000101,99990101]
+     })
+  })();
+  </script>
+</body>
+</html>
