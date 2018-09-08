@@ -6,9 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="css/calendar.css" />
-    <style>
-        #app{max-width:360px;margin:1em auto;}
-    </style>
 </head>
 <body>
   <div id="app"></div>
@@ -16,26 +13,47 @@
   <script>
   "use strict";
   (function(){
-      var activityData=[20180910,20181020];   //有活动的日期
+      //有活动的日期
+      var activityData={
+          "2018":{
+              "9":[10,16,18],
+              "10":[8,20]
+          }
+      };   
      new Calendar({
          el:"#app",                           
          onSelected:function(year,month,day){        
              console.log("selected:",year,month,day);
          },
-         onCellRender:function(cell,year,month,day){   //选择日期时响应
-             if(year){
-                 var date=year*10000+month*100+day;
-                 if(activityData.indexOf(date)!==-1){
-                     var span=document.createElement("span");
-                     span.className="cld-dot";
-                     cell.appendChild(span);
-                 }
-             }
+         onChange:function(year,month){
+            console.log("change",year,month);
+           
+            var that=this;
+            clearTimeout(this._timer);
+
+            //ajax加载当月日程后回调renderCells , 模拟异步,可以在这加载loading层
+            this._timer=setTimeout(function(){
+                that.renderCells(function(cell,year,month,day){
+                    var yearData=activityData[year];
+                    if(!yearData){
+                        yearData={};
+                    }
+
+                    var monthData=yearData[month];
+                    if(!monthData){
+                        monthData=[];
+                    }
+
+                    if(monthData.indexOf(day)!==-1){
+                        cell.insertAdjacentHTML("beforeEnd",'<span class="cld-dot"></span>');
+                    }
+                });
+            },1000);
          }
-         //,today:20000101     //可设定今天，支持整型及Date对象
+         ,today:20180908     //可设定今天，支持整型及Date对象
          //,selected:20180906  //可设定选中日期，支持整型及Date对象
          ,limits:[20180810,20190215]   //有效日期范围，有效值[10000101,99990101]
-     })
+     });
   })();
   </script>
 </body>
