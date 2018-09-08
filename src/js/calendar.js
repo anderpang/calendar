@@ -1,4 +1,4 @@
-/*! <anderpang@foxmail.com */
+/*! <anderpang@foxmail.com> */
 "use strict";
 /**
  * 日历控件
@@ -8,23 +8,18 @@
          onSelected:function(year,month,day){     //选择日期时响应
              console.log("selected:",year,month,day);
          },
-         onCellRender:function(cell,year,month,day){  //日期单元格渲染时回调,year为0时为disabled的单元格
-             //console.log("cell",year,month,day)
-             if(year){
-                 var date=year*10000+month*100+day;
-                 if(activityData.indexOf(date)!==-1){
-                     cell.insertAdjacentHTML("beforeEnd",'<span class="cld-dot"></span>');
-                 }
-             }
-             else
-             {
-
-             }
-         }
+         onChange:function(year,month){           //切换日期时触发
+            console.log("change",year,month);
+         },
          ,today:20190224     //可设定今天，支持整型及Date对象
          ,selected:20180906,  //可设定选中日期，支持整型及Date对象
          ,limits:[20181010]   //有效日期范围，有效值[10000101,99990101]
-     })
+     });
+     
+     方法：
+     calender.renderCells(function(cell,year,month,day){
+          //渲染当前日期的单元格，cell为单元格dom对象
+     });
  */
 
 (function (global, factory){
@@ -35,8 +30,7 @@
     
     function Calendar(settings){
         this.config(settings||{})
-            .init()
-            .triggerSelected();        
+            .init();        
     }
     Calendar.prototype={
        noop:function(){},
@@ -125,9 +119,25 @@
           this._showIndex=0;
           
           this.onSelected=settings.onSelected||this.noop;
-          this.onCellRender=settings.onCellRender||this.noop;
+          //this.onCellRender=settings.onCellRender||this.noop;
+          this.onChange=settings.onChange||this.noop;
 
           return this;
+       },
+       renderCells:function(f){
+           var cells=this.shows[(this._showIndex%3+3)%3].children,
+               cur_date=this._cur_date,
+               year=cur_date[0],
+               month=cur_date[1]+1,
+               day=1,
+               i=0,
+               ii=cells.length;
+
+            for(;i<ii;i++){
+                cells[i].innerHTML&&
+                f(cells[i],year,month,day++);
+            }
+            return this;
        },
        init:function(){
         var d=document,
@@ -567,7 +577,6 @@
               ii=cells.length,
               cell,
               comput,
-              onCellRender=this.onCellRender,
               minDate=this._limits[0],
               maxDate=this._limits[1];
 
@@ -603,7 +612,6 @@
             cell=cells[i];
             cell.innerHTML="";
             cell.className="cld-date-cell cld-date-disabled";
-            onCellRender(cell,0);
         }
 
         for(;index<=lastDate;i++,index++){
@@ -626,14 +634,12 @@
             if(comput<minDate || comput>maxDate){
                 cell.classList.add("cld-date-limit");
             }
-            onCellRender(cell,year,month,index);
         }
 
         for(;i<ii;i++){
             cell=cells[i];
             cell.innerHTML="";
             cell.className="cld-date-cell cld-date-disabled";
-            onCellRender(cell,0);
         }  
         
         el.style.left=(offset+showIndex)*100+"%";
@@ -644,9 +650,14 @@
       },
      //更新头部信息
       updateHeader:function (){
-          var cur_date=this._cur_date;
-          this.yearShow.innerHTML=cur_date[0];
-          this.monShow.innerHTML=cur_date[1]+1;
+          var cur_date=this._cur_date,
+              year=cur_date[0],
+              month=cur_date[1]+1;
+          
+          this.yearShow.innerHTML=year;
+          this.monShow.innerHTML=month;
+
+          this.onChange(year,month);
 
           return this;
       },
