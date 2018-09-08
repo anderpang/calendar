@@ -1,7 +1,7 @@
 # calendar
 日程日历
 
-<a target="_blank" href="http://htmlpreview.github.io/?https://github.com/anderpang/calendar/blob/master/index.html">演示地址</a>
+<a target="_blank" href="https://anderpang.github.io/calendar/index.html">演示地址</a>
 
 ```javascript
      new Calendar({
