@@ -26,7 +26,7 @@
 .cld-date-sel,
 .cld-date-today{position:relative;z-index:0;}
 .cld-date-today:before,
-.cld-date-sel:before{position:absolute;content:"";width:2em;height:2em;left:0;top:0;right:0;bottom:0;margin:auto;border-radius:50%;box-sizing:border-box;z-index:-1;}
+.cld-date-sel:before{position:absolute;content:"";width:1.8em;height:1.8em;left:0;top:0;right:0;bottom:0;margin:auto;border-radius:50%;box-sizing:border-box;z-index:-1;}
 .cld-date-today:before{background-color:#303100;}
 .cld-date-sel:before{border:1px solid #b9121b;}
 
@@ -72,4 +72,4 @@
 .cld-date-show>.cld-date-limit:nth-of-type(7n+1){color:#999;}
 
 /* 活动红点 */
-.cld-dot{position:absolute;left:.5em;bottom:.2em;width:6px;height:6px;border-radius:3px;background-color:red;pointer-events:none;}
+.cld-dot{position:absolute;left:50%;bottom:.1em;width:6px;height:6px;margin-left:-3px;border-radius:3px;background-color:red;pointer-events:none;}
