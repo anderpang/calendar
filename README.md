@@ -4,7 +4,7 @@
 <a target="_blank" href="http://htmlpreview.github.io/?http://github.com/anderpang/calendar/blob/master/index.html">演示地址</a>
 
 ```javascript
-     var calender=new Calendar({
+     var calendar=new Calendar({
          el:"#app",    //嵌入的父元素 
          onSelected:function(year,month,day){     //选择日期时响应
              console.log("selected:",year,month,day);
@@ -14,13 +14,18 @@
          },
          ,today:20190224     //可设定今天，支持整型及Date对象
          ,selected:20180906,  //可设定选中日期，支持整型及Date对象
-         ,limits:[20181010]   //有效日期范围，有效值[10000101,99990101]
+         ,limits:[20181010]   //有效日期范围，有效值[10000101,99990101]，支持整型及Date对象
      });
      
      //方法：
-     calender.renderCells(function(cell,year,month,day){
+     calendar.renderCells(function(cell,year,month,day){
           //渲染当前日期的单元格，cell为单元格dom对象
      });
+     
+     //设置禁用的开始时间，支持整型及Date对象
+     calendar.setLimitStart(20181111); 
+     //动态设置禁用的结束时间
+     calendar.setLimitEnd(20190115);
 ```
 
 ### 如果不加载日程，可当普通日历选择控件来用
