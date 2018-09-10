@@ -1,4 +1,4 @@
-.calendar-wrap{width:100%;min-width:20em;text-align:center;border:1px solid #CCC;background-color:#FFF;overflow:hidden;-webkit-user-select:none;user-select:none;}
+.calendar-wrap{min-width:20em;text-align:center;border:1px solid #CCC;background-color:#FFF;overflow:hidden;-webkit-user-select:none;user-select:none;}
 .cld-header{position:relative;z-index:1;min-height:1em;background:#800050;}
 .cld-main{position:relative;height:20em;transition:transform .5s;}
 .cld-year-bar,
