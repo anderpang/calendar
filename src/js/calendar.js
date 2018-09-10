@@ -791,6 +791,43 @@
                
                 this.onSelected(y,m,d);
             return this;
+       },
+       setLimitStart:function(date){
+            return this.setLimit(date,0);
+       },
+       setLimitEnd:function(date){
+            return this.setLimit(date,1);
+       },
+       setLimit:function(date,index){
+            var limits=this._limits,
+                cur_date=this._cur_date,
+                year,
+                month,
+                prev_date,
+                next_date,
+                tmp,
+                isUpdate;
+
+                date=date instanceof Date?this.getDateFromObj(date):Math.max(10000101,Math.min(99990101,date*1));
+
+            if(limits[index]!==date){
+                limits[index]=date;
+                cur_date=this._cur_date;
+                year=cur_date[0];                
+                month=cur_date[1]+1;
+                //在当前时间显示的范围内，就更新dom
+                prev_date=month===1?(year-1)*100+12:year*100+month-1;
+                next_date=month===12?(year+1)*100+1:year*100+month+1;
+                tmp=date/100|0;
+               
+                isUpdate=index?tmp<=next_date:tmp>=prev_date;
+         
+                if(isUpdate){
+                    this.dateReset()
+                        .onChange(year,month);  
+                }        
+            }
+            return this;
        }
     };
 
