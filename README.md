@@ -24,7 +24,7 @@
      
      //设置禁用的开始时间，支持整型及Date对象
      calendar.setLimitStart(20181111); 
-     //动态设置禁用的结束时间
+     //设置禁用的结束时间，支持整型及Date对象
      calendar.setLimitEnd(20190115);
 ```
 
