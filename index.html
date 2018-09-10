@@ -20,10 +20,11 @@
               "10":[8,20]
           }
       };   
-     new Calendar({
+     var c=new Calendar({
          el:"#app",                           
          onSelected:function(year,month,day){        
              console.log("selected:",year,month,day);
+             //this.setLimitStart(year*10000+month*100+day)
          },
          onChange:function(year,month){
             console.log("change",year,month);
@@ -54,6 +55,18 @@
          //,selected:20180906  //可设定选中日期，支持整型及Date对象
          ,limits:[20180810,20190215]   //有效日期范围，有效值[10000101,99990101]
      });
+     /*
+    document.body.onclick=function(){
+        c.setLimitStart(20190315);
+    };
+    */
+   /*
+    document.body.onclick=function(){
+        var d=new Date(2018,10,15); 
+        //var d=20181115;
+        c.setLimitEnd(d);
+    };
+   */
   })();
   </script>
 </body>
