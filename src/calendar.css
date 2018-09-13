@@ -1,6 +1,6 @@
-.calendar-wrap{min-width:20em;text-align:center;border:1px solid #CCC;background-color:#FFF;overflow:hidden;-webkit-user-select:none;user-select:none;}
-.cld-header{position:relative;z-index:1;min-height:1em;background:#800050;}
-.cld-main{position:relative;height:20em;transition:transform .5s;}
+.calendar-wrap{min-width:20em;text-align:center;overflow:hidden;-webkit-user-select:none;user-select:none;color:#666;border-bottom:1px solid #b2b2b2;}
+.cld-header{position:relative;z-index:1;min-height:1em;line-height:1.1;padding:.5em 0;border-bottom:1px solid #b2b2b2;background-color:#FFF;}
+.cld-main{position:relative;height:15.2em;transition:transform .5s;}
 .cld-year-bar,
 .cld-mon-bar,
 .cld-date-inner,
@@ -9,12 +9,13 @@
 .cld-year-bar{top:-100%;}
 .cld-mon-bar{top:100%;}
 
-.cld-week-bar{position:relative;z-index:1;}
+.cld-week-bar{position:relative;z-index:1;color:#000;border-bottom:1px solid #b2b2b2;}
 .cld-week-cell{display:inline-block;width:14.2857%;height:2em;line-height:2em;}
-.cld-date-inner{height:18em;}
+.cld-date-inner{height:13.2em;}
 .cld-anim{transition:transform .5s;}
-.cld-date-cell{position:relative;display:inline-block;width:14.2857%;height:16.6666%;line-height:3em;vertical-align:top;box-sizing:border-box;border-top:1px solid #CCC;cursor:pointer;transition:background-color .5s;}
-.cld-date-cell:hover{background-color:#EEE;}
+.cld-date-cell{position:relative;display:inline-block;width:14.2857%;height:16.6666%;line-height:2.2em;vertical-align:top;box-sizing:border-box;cursor:pointer;/*transition:background-color .5s;*/}
+/* .cld-date-cell:hover{background-color:#EEE;} */
+.cld-date-cell:hover{color:#000;}
 .cld-date-limit{color:#CCC;}
 
 .cld-date-limit,
@@ -27,23 +28,26 @@
 .cld-date-today{position:relative;z-index:0;}
 .cld-date-today:before,
 .cld-date-sel:before{position:absolute;content:"";width:1.8em;height:1.8em;left:0;top:0;right:0;bottom:0;margin:auto;border-radius:50%;box-sizing:border-box;z-index:-1;}
-.cld-date-today:before{background-color:#303100;}
-.cld-date-sel:before{border:1px solid #b9121b;}
+.cld-date-today:before{background-color:#666;}
+/* .cld-date-sel:before{border:1px solid #f00;} */
+.cld-date-show>.cld-date-sel{color:#f00;}
 
 /* 头部 */
 .cld-header{display:flex;align-items:center;}
-.cld-move-left,
-.cld-move-right{padding:1em;cursor:pointer;}
+/* .cld-move-left,
+.cld-move-right{padding:1em;cursor:pointer;} */
 .cld-year-show:hover,
 .cld-mon-show:hover,
-.cld-move-left:hover,
+/* .cld-move-left:hover,
 .cld-move-right:hover{background-color:rgba(0,0,0,.2);}
 .cld-move-left:before,
 .cld-move-right:before{display:inline-block;content:"";width:.8em;height:.8em;border-left:1px solid #CCC;border-top:1px solid #CCC;transform:rotate(-45deg);}
-.cld-move-right:before{transform:rotate(135deg);}
+.cld-move-right:before{transform:rotate(135deg);} */
 .cld-year-show,
 .cld-mon-show,
-.cld-today-show{flex:1;color:#FFF;cursor:pointer;}
+.cld-today-show{cursor:pointer;}
+.cld-mon-show{color:#000;font-size:3.5em;}
+.cld-year-show{flex:1;margin-left:.3em;text-align:left;transform:scale(.7);transform-origin: 0 100%;}
 
 /* 年份面板 && 月份面板 */
 .cld-year-header,
@@ -51,7 +55,7 @@
 .cld-back-btn{float:right;cursor:pointer;}
 .cld-back-btn:hover{font-weight:bold;}
 .cld-year-inner,
-.cld-mon-inner{height:18em;line-height:6em;}
+.cld-mon-inner{height:13.2em;line-height:4.4em;}
 .cld-year-prev,
 .cld-year-next,
 .cld-year-cell,
@@ -65,11 +69,11 @@
 
 
 /* 周六,周日 样式 */
-.cld-week-bar>.cld-week-cell:nth-of-type(6n+1),
+ .cld-week-bar>.cld-week-cell:nth-of-type(6n+1),
 .cld-date-show>.cld-date-cell:nth-of-type(7n+7),
 .cld-date-show>.cld-date-cell:nth-of-type(7n+1){color:red;}
 .cld-date-show>.cld-date-limit:nth-of-type(7n+7),
-.cld-date-show>.cld-date-limit:nth-of-type(7n+1){color:#999;}
+.cld-date-show>.cld-date-limit:nth-of-type(7n+1){color:#999;} 
 
 /* 活动红点 */
-.cld-dot{position:absolute;left:50%;bottom:.1em;width:6px;height:6px;margin-left:-3px;border-radius:3px;background-color:red;pointer-events:none;}
+.cld-dot{position:absolute;left:50%;bottom:.2em;width:4px;height:4px;margin-left:-2px;border-radius:3px;background-color:#F00;pointer-events:none;}
