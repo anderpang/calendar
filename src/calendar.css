@@ -69,11 +69,11 @@
 
 
 /* 周六,周日 样式 */
-.cld-week-bar>.cld-week-cell:nth-of-type(6n+1),
+/* .cld-week-bar>.cld-week-cell:nth-of-type(6n+1),
 .cld-date-show>.cld-date-cell:nth-of-type(7n+7),
-.cld-date-show>.cld-date-cell:nth-of-type(7n+1){color:#000;}
+.cld-date-show>.cld-date-cell:nth-of-type(7n+1){color:red;}
 .cld-date-show>.cld-date-limit:nth-of-type(7n+7),
-.cld-date-show>.cld-date-limit:nth-of-type(7n+1){color:#999;} 
+.cld-date-show>.cld-date-limit:nth-of-type(7n+1){color:#999;} */
 
 /* 活动红点 */
 .cld-dot{position:absolute;left:50%;bottom:.2em;width:4px;height:4px;margin-left:-2px;border-radius:3px;background-color:#F00;pointer-events:none;}
