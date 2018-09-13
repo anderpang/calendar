@@ -14,6 +14,7 @@
          ,today:20190224     //可设定今天，支持整型及Date对象
          ,selected:20180906,  //可设定选中日期，支持整型及Date对象
          ,limits:[20181010]   //有效日期范围，有效值[10000101,99990101]
+         ,weeks:["日","一","二","三","四","五","六"]
      });
      
      方法：
@@ -118,6 +119,7 @@
           this._cur_date=[year,month]; //用于计算显示日历,month从0开始
           this._showIndex=0;
           
+          Array.isArray(settings.weeks)&&(this._weeks=settings.weeks);
           this.onSelected=settings.onSelected||this.noop;
           //this.onCellRender=settings.onCellRender||this.noop;
           this.onChange=settings.onChange||this.noop;
@@ -178,12 +180,13 @@
 
             /***   日历头部 start *****/
             todayShow.innerHTML="今天";
-            header.appendChild(tg("cld-move-left"));
-            header.appendChild(yearShow);
+            yearShow.innerHTML=" <br /> ";
+            //header.appendChild(tg("cld-move-left"));
             header.appendChild(monShow);
+            header.appendChild(yearShow);            
             header.appendChild(todayShow);
 
-            header.appendChild(tg("cld-move-right"));
+            //header.appendChild(tg("cld-move-right"));
             /***   日历头部 end *****/
 
             //初始化星期
@@ -469,7 +472,7 @@
                     t.offsetWidth;
                     
                     if(cy2<cx2){
-                        if(time<300 || cx2>this._ow*0.2){
+                        if(cx2>5 && time<300 || cx2>this._ow*0.2){
                             this._disableClick=true;
                             
                             if(cx>0){
@@ -541,10 +544,11 @@
            
            return show;
        },
-       weeks:["日","一","二","三","四","五","六"],
+       _months:["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"],
+       _weeks:["日","一","二","三","四","五","六"],
        initWeek:function (el){
           var span=document.createElement("span"),
-              ws=this.weeks,
+              ws=this._weeks,
               i=1,
               ii=ws.length;
               span.className="cld-week-cell";
@@ -654,8 +658,9 @@
               year=cur_date[0],
               month=cur_date[1]+1;
           
-          this.yearShow.innerHTML=year;
-          this.monShow.innerHTML=month;
+          this.yearShow.firstChild.data=year;
+          this.yearShow.lastChild.data=this._months[month-1];
+          this.monShow.innerHTML=month<10?'0'+month:month;
 
           this.onChange(year,month);
 
