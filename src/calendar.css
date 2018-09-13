@@ -69,9 +69,9 @@
 
 
 /* 周六,周日 样式 */
- .cld-week-bar>.cld-week-cell:nth-of-type(6n+1),
+.cld-week-bar>.cld-week-cell:nth-of-type(6n+1),
 .cld-date-show>.cld-date-cell:nth-of-type(7n+7),
-.cld-date-show>.cld-date-cell:nth-of-type(7n+1){color:red;}
+.cld-date-show>.cld-date-cell:nth-of-type(7n+1){color:#000;}
 .cld-date-show>.cld-date-limit:nth-of-type(7n+7),
 .cld-date-show>.cld-date-limit:nth-of-type(7n+1){color:#999;} 
 
